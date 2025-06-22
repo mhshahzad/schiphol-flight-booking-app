@@ -1,5 +1,5 @@
 import db from "../db-config";
-import { Flight } from "../../../types/app-types";
+import {Flight} from "../../schemas/flight.schema";
 
 /**
  * This function creates a flight in the database
