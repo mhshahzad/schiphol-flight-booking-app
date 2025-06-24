@@ -1,15 +1,18 @@
-import express from "express";
+import express, {Router} from "express";
 import {Flight} from "../../../../types/schiphol-types";
+import {validateRequest} from "../../../express-api-package/src/middlewares/validation.middleware"
+import {reservationSchema} from "../schema/reservation.schema";
+import {getFlightById} from "../utils/getFlight";
 
-const router = express.Router();
+const router = Router();
 
 router.post(
     "/reserve",
-    validateReservation,
+    validateRequest(reservationSchema) as express.RequestHandler,
     async (req, res) => {
       try {
         const {flight_id, seat, user_id} = req.body;
-        const flightDetails: Flight = await getFlight(flight_id);
+        const flightDetails: Flight = await getFlightById(flight_id);
 
         // Check if the flight exists
         if (!flightDetails) {
