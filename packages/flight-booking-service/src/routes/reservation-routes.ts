@@ -1,7 +1,5 @@
 import express from "express";
-import {validateReservation} from "../middlewares/validation-middleware";
 import {Flight} from "../../../../types/schiphol-types";
-import {cache} from "../middlewares/caching-middleware";
 
 const router = express.Router();
 
